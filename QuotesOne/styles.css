@@ -1,0 +1,87 @@
+/* 
+
+The one style sheet for Quotations 1
+
+Authors: Rick Mercer and Braden Means
+
+*/
+.container {
+	vertical-align: text-top;
+	border: 2px black solid;
+	border-radius: 7px;
+	padding: 5px;
+	margin: 5px;
+	font-size: 10pt;	
+}
+
+.quoteContainer {
+	text-align: left;
+	border: 2px black solid;
+	border-radius: 7px;
+	padding: 5px;
+	margin: 5px;
+	font-size: 10pt;
+	width: 400px;
+}
+
+.registerLoginContainer {
+	text-align: left;
+	border: 2px black solid;
+	border-radius: 7px;
+	padding: 5px;
+	margin: 5px;
+	font-size: 10pt;
+	width: 225px;
+	height: 160px;
+}
+
+.userPassField {
+	border: 2px lightgrey solid;
+	padding: 2px;
+	margin: 8px;
+	width: 150px;
+}
+.rlButton {
+	padding: 2px;
+	margin: 8px;
+}
+
+.error {
+	margin: 5px;
+	font-size: 12pt;
+}
+
+.welcome {
+	margin-top: 8px;
+	margin-left: 10px;
+	font-size: 12pt;
+}
+
+.quoteField {
+	vertical-align: text-top;
+	border: 2px lightgrey solid;
+	padding: 5px;
+	margin: 5px;
+	height: 75px;
+	width: 375px;
+}
+
+.authorField {
+	border: 2px lightgrey solid;
+	padding: 5px;
+	margin: 5px;
+	width: 125px;
+}
+
+.addQuoteButton {
+	padding: 2px;
+	margin: 5px;
+}
+
+h1 {
+	font-family: Times;
+}
+
+a {
+	margin: 5px;
+}
