@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+/* Name: Braden Means*/
+
+h1 {
+	text-shadow: 2px 2px gray;
+	text-align: center;
+	font-family: Georgia;
+}
+
+body {
+	background-image: url("images/moviebg.png");
+	height: 1200px;
+}
+
+.container {
+	background-color: lightgray;
+	width: 940px;
+	margin: auto;
+	border-radius: 25px;
+	border-style: solid;
+	border-color:gray;
+	overflow: hidden;
+	box-shadow: 10px 10px 5px darkgrey;
+}
+
+.generalInfoImage {
+	float: right;
+}
+
+
+.reviews {
+	float: left;
+	margin-right: 10px;
+	width: 320px;
+	margin-left: 10px;
+
+}
+
+.reviewsText {
+	background-color: white;
+	border-radius: 25px;
+	border-style: solid;
+	border-color:gray;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right: 10px;
+	font-family: Georgia;
+	font-size: 0.9em;
+	min-height: 30px;
+
+}
+
+.reviewsText img {
+	vertical-align: top;
+	float: left;
+	margin-right: 5px;
+}
+
+.names {
+	padding-bottom: 15px;
+	font-family: Georgia;
+	font-size: 0.9em;
+	margin-top: -10px;
+}
+
+.namesSpecial {
+	padding-bottom: 27px;
+	font-family: Georgia;
+	font-size: 0.9em;
+	margin-top: -10px;
+}
+
+
+.names img {
+	vertical-align: top;
+	float: left;
+	margin-right: 5px;
+}
+
+.namesSpecial img {
+	vertical-align: top;
+	float: left;
+	margin-right: 5px;
+}
+
+
+.generalOverview {
+	background-color: #8FBC8F;
+	float: right;
+	width: 250px;
+	overflow: hidden;
+	margin-top: -5px;
+	font-family: Arial;
+	font-size:0.9em;
+}
+
+.generalOverview dt {
+	padding-left: 5px;
+	font-weight: bold;
+}
+
+dd {
+	padding-bottom: 8px;
+}
+
+ul {
+	list-style-type: none;
+	margin: -2px;
+}
+
+li {
+	text-indent: -37px;
+}
+
+.background {
+	float: left;
+	width: 690px;
+	color: red;
+	font-size: 68px;
+	background-image: url("images/rottenlargebg.png");
+	background-repeat: repeat-x;
+	overflow: hidden;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+
+.background img {
+	overflow: hidden;
+	vertical-align: top;
+	height: 83px;
+}
+
+.banner {
+	margin: auto;
+	background-image: url("images/rancidbannerbg.png");
+	background-repeat: repeat-x;
+}
