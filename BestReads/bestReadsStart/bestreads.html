@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<!-- CSC 337: Assignment BestReads 2 -->
+<!-- Author: Braden Means -->
+<head>
+<link rel="stylesheet" type="text/css" href="bestreads.css" />
+<title>Best Reads</title>
+</head>
+<body onload="showAllCovers()">
+
+<div class="header">
+<div>
+  <span>bestreads</span>
+</div>
+  <span class="back" onclick="showAllCovers()" id='getAll'>home</span>
+</div>
+<div class="books" id='getOne'>
+	
+ </div>
+
+<script>
+one = document.getElementById('getAll');
+two = document.getElementById('getOne');
+
+
+// TODO: Use AJAX to get a list of the paths of all images to show
+// all of the book images in the folder 'books'
+function showAllCovers() {
+	var ajax = new XMLHttpRequest();
+	var result = "";
+	var allBookFolders="";
+	var book = document.getElementsByClassName("books");
+	//alert('showAllCovers called');
+	ajax.open("GET", "bestreads.php?action=one",true);
+	ajax.send();
+	ajax.onreadystatechange = function() {
+		if(ajax.readyState == 4 && ajax.status == 200) {
+			var array = JSON.parse(ajax.responseText);
+			for (var i = 0; i < array.length; i++) {
+			    result +="<p class='onebook' onclick='getInfo(this)' id='" + i + "'>"
+				result += "<img src=" + array[i] + "/cover.jpg>";
+			}
+		book[0].innerHTML = result;
+		}
+	}
+};
+
+function getInfo(element) {
+	var ajax = new XMLHttpRequest();
+	var result = "";
+	var whichBook = parseInt(element.id);
+	ajax.open("GET", "bestreads.php?action=two&book=" +whichBook.toString(),true);
+	ajax.send();
+	ajax.onreadystatechange = function() {
+		if(ajax.readyState == 4 && ajax.status == 200) {
+			two.innerHTML = ajax.responseText;
+		}
+	}
+}
+</script>
+
+</body>
+</html>
