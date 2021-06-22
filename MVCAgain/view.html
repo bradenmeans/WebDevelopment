@@ -1,0 +1,171 @@
+<!-- Name: Braden Means -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>MVC</title>
+<style>
+
+table, td, th {
+ border: 1px solid black;
+ padding: 5px;
+}
+
+table {
+ border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+ background-color: #f2f2f2
+}
+button {
+margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<h3>Search for actors, roles, movies, or Roles/Movies </h3>
+Part of Actor's name: <br>
+<input type="text" id="name"> <br>
+<button type="button" onclick="showActors()" id="1">Actors like</button>
+<button type="button" onclick="showMovies()" id="2">Movies like</button>
+<button type="button" onclick="showRoles()" id="3">Roles like</button>
+<hr>
+Roles/Movies for actor<br>
+<input type="text" id="fullname" onchange="showRolesForName()"><br>
+<hr>
+
+<div id="divToChange">
+</div>
+
+<script>
+var substr = document.getElementById("name");
+var actorList = document.getElementById("1");
+var movieList = document.getElementById("2");
+var roleList = document.getElementById("3");
+var firstLast = document.getElementById("fullname");
+
+function showMovies(element) {
+	var anObj = new XMLHttpRequest();
+	anObj.open("GET","controller.php?info="+substr.value+"&type=movieList", true);
+	anObj.send();
+	
+	anObj.onreadystatechange = function() {
+		if (anObj.readyState == 4 && anObj.status == 200) {
+			//alert(anObj.responseText);
+			if (anObj.responseText.length == 2) {
+				str = "<h2>No matches like '" +substr.value+ "'</h2>";
+				var toChange = document.getElementById("divToChange");
+				toChange.innerHTML = str;
+				document.getElementById("name").value = "";
+			}
+			else {
+			array = JSON.parse(anObj.responseText);
+			
+			str = "<h2>Movies like '" + substr.value +"'</h2><table>";
+			for(var i = 0; i < array.length; i++) {
+				str += "<tr><td>" + array[i]['name'] + "</td></tr>";
+			}
+			str += "</table>";
+			var toChange = document.getElementById("divToChange");
+			toChange.innerHTML = str;
+			document.getElementById("name").value = "";
+			}
+		}
+	};	
+}
+
+function showActors(element) {
+	var anObj = new XMLHttpRequest();
+	anObj.open("GET","controller.php?info="+ substr.value+ "&type=actorList", true);
+	//alert(substr.value);
+	anObj.send();
+	
+	anObj.onreadystatechange = function() {
+		if (anObj.readyState == 4 && anObj.status == 200) {
+			if (anObj.responseText.length == 2) {
+				str = "<h2>No matches like '" +substr.value+ "'</h2>";
+				var toChange = document.getElementById("divToChange");
+				toChange.innerHTML = str;
+				document.getElementById("name").value = "";
+			}
+			else {
+				array = JSON.parse(anObj.responseText);
+				str = "<h2>Actors like '" + substr.value +"'</h2><table>";
+				for(var i = 0; i < array.length; i++) {
+					str += "<tr><td>" + array[i]['first_name'] + " " + array[i]['last_name'] + "</td></tr>";
+				}
+				str += "</table>";
+				var toChange = document.getElementById("divToChange");
+				toChange.innerHTML = str;
+				document.getElementById("name").value = "";
+				}
+		}
+	};	
+}
+
+function showRoles(element) {
+	var anObj = new XMLHttpRequest();
+	anObj.open("GET","controller.php?info="+ substr.value+ "&type=roleList", true);
+	//alert(substr.value);
+	anObj.send();
+	
+	anObj.onreadystatechange = function() {
+		if (anObj.readyState == 4 && anObj.status == 200) {
+			//alert(anObj.responseText);
+			if (anObj.responseText.length == 2) {
+				str = "<h2>No matches like '" +substr.value+ "'</h2>";
+				var toChange = document.getElementById("divToChange");
+				toChange.innerHTML = str;
+				document.getElementById("name").value = "";
+			}
+			else {
+			array = JSON.parse(anObj.responseText);
+			
+			str = "<h2>Roles like '" + substr.value +"'</h2><table>";
+			for(var i = 0; i < array.length; i++) {
+				str += "<tr><td>" + array[i]['role'] + "</td></tr>";
+			}
+			str += "</table>";
+			var toChange = document.getElementById("divToChange");
+			toChange.innerHTML = str;
+			document.getElementById("name").value = "";
+			}
+		}
+	};	
+}
+
+function showRolesForName(element) {
+	var anObj = new XMLHttpRequest();
+	fullName = firstLast.value.split(" ");
+	anObj.open("GET","controller.php?first="+ fullName[0] +"&last=" + fullName[1] +"&type=null&info=null", true);
+	anObj.send();
+	
+	anObj.onreadystatechange = function() {
+		if (anObj.readyState == 4 && anObj.status == 200) {
+			if (anObj.responseText.length == 2) {
+				str = "<h2>No matches like '" +firstLast.value+ "'</h2>";
+				var toChange = document.getElementById("divToChange");
+				toChange.innerHTML = str;
+				document.getElementById("name").value = "";
+			}
+			else {
+			array = JSON.parse(anObj.responseText);	
+			str = "<h2>Roles/Movies for " + firstLast.value + "</h2><table>";	
+			for(var i = 0; i < array.length; i++) {
+				str += "<tr><td>"+ array[i]['role'] + ": " + array[i]['name'] + "</td></tr>";	
+			}			
+			str += "</table>";	
+			var toChange = document.getElementById("divToChange");	
+			toChange.innerHTML = str;	
+			document.getElementById("fullname").value = "";
+			}
+		}
+	};	
+}
+
+</script>
+
+</body>
+</html>
